@@ -1,3 +1,5 @@
+package main;
+
 public enum Color {
     
     WHITE("\u001B[0m"),
