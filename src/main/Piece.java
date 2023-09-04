@@ -1,3 +1,5 @@
+package main;
+
 public enum Piece{
     PIECE_A(new boolean[][]{{true}}),
     PIECE_B(new boolean[][]{{true,true}}),
