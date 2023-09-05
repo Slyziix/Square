@@ -12,6 +12,7 @@ public class Player {
     public static void main(String[] str) {
         Player player = new Player(PlayerColor.BLUE);
         System.out.println(player.getAvailablePieceTotalLength());
+        System.out.println(player.getAvailablePiecesString());
     }
 
     public Player(List<Piece> availablePieces, int score, PlayerColor color) {
@@ -60,11 +61,32 @@ public class Player {
 
     public String getAvailablePiecesString() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < this.getAvailablePieces().size(); i++) {
-            //f(this.getAvailablePieces().get(i).getForm().length)
+        // each line
+        for(int i = 0; i<5; i++) {
+            // each piece
+            for(int j = 0; j < this.getAvailablePieces().size(); j++) {
+                if(this.getAvailablePieces().get(j).getForm().length > i) {
+                    // each case
+                    for(int k = 0; k < this.getAvailablePieces().get(j).getForm()[0].length; k++) {
+                        if(this.getAvailablePieces().get(j).getForm()[i][k]) {
+                            sb.append("\u25A0" + " ");
+                        } else {
+                            sb.append("  ");
+                        }
+                    }
 
+                } else {
+                    for(int l = 0; l < this.getAvailablePieces().get(j).getForm()[0].length; l++) {
+                        sb.append("  ");
+                    }
+                }
+                sb.append("| ");
+                //f(this.getAvailablePieces().get(i).getForm().length)
+
+            }
+            sb.append("\n");
         }
-        return "";
+        return sb.toString();
 
     }
 }
