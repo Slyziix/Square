@@ -6,7 +6,7 @@ public class Player {
 
     private List<Piece> availablePieces;
     private int score;
-    private Color color;
+    private PlayerColor color;
 
     public Player(List<Piece> availablePieces, int score, Color color) {
         this.availablePieces = availablePieces;
@@ -35,5 +35,22 @@ public class Player {
 
     public boolean removePiece(Piece piece) {
         return availablePieces.remove(piece);
+    }
+
+    private int getAvailablePieceTotalLength() {
+        int length = 0;
+        for(int i = 0; i < this.availablePieces.size(); i++) {
+            length += this.availablePieces.get(i).getForm()[0].length;
+        }
+        return length;
+    }
+
+    public String getAvailablePiecesString() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < this.getAvailablePieces().size(); i++) {
+            //f(this.getAvailablePieces().get(i).getForm().length)
+            
+        }
+
     }
 }
