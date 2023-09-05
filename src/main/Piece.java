@@ -26,8 +26,14 @@ public enum Piece{
     private boolean[][] form;
 
     public static void main(String[] str) {
-        System.out.println(Piece.PIECE_U);
-        System.out.println(Piece.PIECE_M);
+        Piece piece = Piece.PIECE_G;
+        System.out.println(piece);
+        piece.rotate();
+        System.out.println(piece);
+        piece.rotate();
+        System.out.println(piece);
+        piece.rotate();
+        System.out.println(piece);
     }
     
     Piece(boolean[][] form){
@@ -57,6 +63,16 @@ public enum Piece{
             
     }
 
+    public void rotate(){
+       
+        boolean[][] nvforme = new boolean[this.form[0].length][this.form.length];
 
+        for (int i=0;i<this.form[0].length;i++){
+            for(int j=0;j<this.form.length;j++){
+                nvforme[i][j] = this.form[this.form.length - 1 -j][i];
+            }
+        }
+        this.form = nvforme;
+    }
    
 }
