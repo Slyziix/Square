@@ -11,7 +11,7 @@ public enum Piece{
     PIECE_I(new boolean[][]{{true,true,false},{false,true,true}}),
     PIECE_J(new boolean[][]{{true},{true},{true},{true}}),
     PIECE_K(new boolean[][]{{false,true},{false,true},{false,true},{true,true}}),
-    PIECE_L(new boolean[][]{{false,true},{false,true},{true,false},{true,false}}),
+    PIECE_L(new boolean[][]{{false,true},{false,true},{true,true},{true,false}}),
     PIECE_M(new boolean[][]{{false,true},{true,true},{true,true}}),
     PIECE_N(new boolean[][]{{true,true},{false,true},{true,true}}),
     PIECE_O(new boolean[][]{{true,false},{true,true},{true,false},{true,false}}),
@@ -26,8 +26,14 @@ public enum Piece{
     private boolean[][] form;
 
     public static void main(String[] str) {
-        System.out.println(Piece.PIECE_U);
-        System.out.println(Piece.PIECE_M);
+        Piece piece = Piece.PIECE_G;
+        System.out.println(piece);
+        piece.rotate();
+        System.out.println(piece);
+        piece.rotate();
+        System.out.println(piece);
+        piece.rotate();
+        System.out.println(piece);
     }
     
     Piece(boolean[][] form){
@@ -57,6 +63,16 @@ public enum Piece{
             
     }
 
+    public void rotate(){
+       
+        boolean[][] nvforme = new boolean[this.form[0].length][this.form.length];
 
+        for (int i=0;i<this.form[0].length;i++){
+            for(int j=0;j<this.form.length;j++){
+                nvforme[i][j] = this.form[this.form.length - 1 -j][i];
+            }
+        }
+        this.form = nvforme;
+    }
    
 }
