@@ -1,4 +1,5 @@
 package main;
+
 public class Position{
     
     private final int x;

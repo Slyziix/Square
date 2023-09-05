@@ -1,7 +1,7 @@
 package main;
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class Game{
@@ -40,9 +40,8 @@ public class Game{
     }
 
     static void affichageRegles() throws FileNotFoundException{
-        int nb = Game.choixRegles(); 
-        System.out.println(nb);       
-        FileReader file = new FileReader("res/regles/"+ nb + ".txt");
+        int nb = Game.choixRegles();      
+        File file = new File("res/regles/R"+ nb + ".txt");
         Scanner sc = new Scanner(file);
         while(sc.hasNextLine())
         {
