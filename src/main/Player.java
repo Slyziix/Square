@@ -67,7 +67,8 @@ public class Player {
                 // each case
                 for(int k = 0; k < this.getAvailablePieces().get(j).getForm()[0].length; k++) {
                     if(this.getAvailablePieces().get(j).getForm()[lineIdx][k]) {
-                        sb.append("\u25A0" + " ");
+                        sb.append("\u001B[38;2;" + this.color.getColor().getRed() + ";" + this.color.getColor().getGreen() + ";"
+                        + this.color.getColor().getBlue() + "m" + "\u25A0 " + "\u001B[0m");
                     } else {
                         sb.append("  ");
                     }
