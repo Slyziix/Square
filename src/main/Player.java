@@ -99,4 +99,21 @@ public class Player {
         }
         return sb.toString();
     }
+
+    public int calculateScore() {
+        int score = 0;
+        if(this.getAvailablePieces().isEmpty()) {
+            return 10;
+        }
+        for(int i = 0; i < this.getAvailablePieces().size(); i++) {
+            for(int j = 0; j < this.getAvailablePieces().get(i).getForm().length; j++) {
+                for(int k = 0; k < this.getAvailablePieces().get(i).getForm()[0].length; k++) {
+                    if(this.getAvailablePieces().get(i).getForm()[j][k]) {
+                        score--;
+                    }
+                }
+            }
+        }
+        return score;
+    }
 }

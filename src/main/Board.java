@@ -50,14 +50,29 @@ public class Board {
         return board;
     }
 
-    public void placeShape(Position p, Board b, PlayerColor pcolor, Piece shape) {
-        // CURRENT_PLAYER = PlayerColor.BLUE;
+    public void placeShape(Position p, Board b, PlayerColor pcolor, Piece shape, int turn) {
+        if (turn == 0) {
+            if (Rules.checkDisponibility(b, p, shape) && pcolor.getPosition().equals(p)) {
+                int x = p.getX();
+                int y = p.getY();
 
-        if (Rules.checkDisponibility(b, p, shape) && Rules.checkSurrondings(b, p, shape, pcolor)) {
+                for (int i = 0; i < shape.getForm().length; ++i) {
+                    for (int j = 0; j < shape.getForm()[i].length; ++j) {
+                        if (shape.getForm()[i][j])
+                            b.setColorAt(new Position(x + i, y + j));
+                    }
+                }
+            }
+        } else if (Rules.checkDisponibility(b, p, shape) && Rules.checkSurrondings(b, p, shape, pcolor)) {
             int x = p.getX();
             int y = p.getY();
 
-            b.setColorAt(new Position(x, y));
+            for (int i = 0; i < shape.getForm().length; ++i) {
+                for (int j = 0; j < shape.getForm()[i].length; ++j) {
+                    if (shape.getForm()[i][j])
+                        b.setColorAt(new Position(x + i, y + j));
+                }
+            }
         }
 
     }
@@ -69,11 +84,7 @@ public class Board {
         b.setColorAt(new Position(5, 5));
         b.setColorAt(new Position(6, 5));
 
-        b.displayBoard();
-
-        System.out.println();
-
-        b.placeShape(new Position(7, 6), b, PlayerColor.RED, Piece.PIECE_F);
+        b.placeShape(new Position(5, 2), b, PlayerColor.RED, Piece.PIECE_A, 0);
 
         b.displayBoard();
     }
