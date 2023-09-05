@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -8,10 +9,22 @@ public class Player {
     private int score;
     private PlayerColor color;
 
-    public Player(List<Piece> availablePieces, int score, Color color) {
+    public static void main(String[] str) {
+        Player player = new Player(PlayerColor.BLUE);
+        System.out.println(player.getAvailablePieceTotalLength());
+    }
+
+    public Player(List<Piece> availablePieces, int score, PlayerColor color) {
         this.availablePieces = availablePieces;
         this.score = score;
         this.color = color;
+    }
+
+    public Player(PlayerColor color) {
+        this(new ArrayList<Piece>(), 0, color);
+        for(int i = 0; i < Piece.values().length; i++) {
+            this.availablePieces.add(Piece.values()[i]);
+        }
     }
     
     public List<Piece> getAvailablePieces() {
@@ -26,10 +39,10 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
-    public Color getColor() {
+    public PlayerColor getColor() {
         return color;
     }
-    public void setColor(Color color) {
+    public void setColor(PlayerColor color) {
         this.color = color;
     }
 
@@ -49,8 +62,9 @@ public class Player {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < this.getAvailablePieces().size(); i++) {
             //f(this.getAvailablePieces().get(i).getForm().length)
-            
+
         }
+        return "";
 
     }
 }
