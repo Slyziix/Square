@@ -1,5 +1,6 @@
 Contraintes :
+
 Chaque joueur doit démarrer sur l’un des angles du plateau.
-L’ordre de jeu est bleu, jaune, rouge, vert.
+L’ordre de jeu est rouge, bleu, vert, jaune
 Chaque nouvelle pièce posée doit toucher au moins une pièce de la même couleur,
 mais uniquement par les angles, jamais par les cotés.
