@@ -7,7 +7,11 @@ public class Rules {
 
         for (int i = 0; i < s.getForm().length; ++i) {
             for (int j = 0; j < s.getForm()[i].length; ++j) {
-                if (!b.getBoard()[x + i][y + j].equals(PlayerColor.WHITE) && s.getForm()[i][j]) {
+                try {
+                    if (!b.getBoard()[x + i][y + j].equals(PlayerColor.WHITE) && s.getForm()[i][j]) {
+                        return false;
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
                     return false;
                 }
             }
@@ -27,39 +31,71 @@ public class Rules {
 
                 // Check + form
                 if (s.getForm()[i][j]) {
-                    if (b.getBoard()[x + i - 1][y + j].equals(color)) {
+                    try {
+                        if (b.getBoard()[x + i - 1][y + j].equals(color)) {
+                            return false;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
                         return false;
                     }
 
-                    if (b.getBoard()[x + i][y + j - 1].equals(color)) {
+                    try {
+                        if (b.getBoard()[x + i][y + j - 1].equals(color)) {
+                            return false;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
                         return false;
                     }
 
-                    if (b.getBoard()[x + i][y + j + 1].equals(color)) {
+                    try {
+                        if (b.getBoard()[x + i][y + j + 1].equals(color)) {
+                            return false;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
                         return false;
                     }
 
-                    if (b.getBoard()[x + i + 1][y + j].equals(color)) {
+                    try {
+                        if (b.getBoard()[x + i + 1][y + j].equals(color)) {
+                            return false;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
                         return false;
                     }
                 }
 
                 // Check x form
                 if (s.getForm()[i][j]) {
-                    if (b.getBoard()[x + i - 1][y + j - 1] == color) {
-                        isSurrongindsSquareSatisfied = true;
+                    try {
+                        if (b.getBoard()[x + i - 1][y + j - 1] == color) {
+                            isSurrongindsSquareSatisfied = true;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        return false;
                     }
 
-                    if (b.getBoard()[x + i - 1][y + j + 1] == color) {
-                        isSurrongindsSquareSatisfied = true;
+                    try {
+                        if (b.getBoard()[x + i - 1][y + j + 1] == color) {
+                            isSurrongindsSquareSatisfied = true;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        return false;
                     }
 
-                    if (b.getBoard()[x + j + 1][y + i - 1] == color) {
-                        isSurrongindsSquareSatisfied = true;
+                    try {
+                        if (b.getBoard()[x + j + 1][y + i - 1] == color) {
+                            isSurrongindsSquareSatisfied = true;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        return false;
                     }
 
-                    if (b.getBoard()[x + i + 1][y + j + 1] == color) {
-                        isSurrongindsSquareSatisfied = true;
+                    try {
+                        if (b.getBoard()[x + i + 1][y + j + 1] == color) {
+                            isSurrongindsSquareSatisfied = true;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        return false;
                     }
                 }
 
