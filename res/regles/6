@@ -1,0 +1,9 @@
+Décompte des points :
+Lorsque tous les joueurs sont bloqués, chacun compte le nombre de carrés qu’il n’a pu
+placer sur le plateau et calcule son score :
+Chaque carré non posé constitue un point négatif.
+Un bonus de15 points est accordé si les 21 pièces ont été posées.
+Ce bonus est de 20 points si les 21 pièces ont été posées avec le carré solitaire en
+dernière position.
+
+Celui qui a le plus de points a gagné !
