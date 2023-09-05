@@ -1,69 +1,82 @@
 package main;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class Game{
 
-    public static void affichageJoueur(){
-        System.out.println("Combien de joueurs ?");
-        System.out.println("A - 2 Joueurs");
-        System.out.println();
-        System.out.println("B - 4 Joueurs");
-        Game.choixNbJoueur();
-        Board b = new Board();
-        b.initialise();
-        b.displayBoard();
+    private int nbJoueur = 2;
+
+    public int getNbJoueur() {
+        return nbJoueur;
     }
 
-    public static String choixNbJoueur(){
+    public void setNbJoueur(int nbJoueur) {
+        this.nbJoueur = nbJoueur;
+    }
+    
+    public void affichageJoueur(){
+        System.out.println("Combien de joueurs ?");
+        System.out.println("1. 2 Joueurs");
+        System.out.println();
+        System.out.println("2. 4 Joueurs");
+        System.out.println();
+        int nb = Game.choixNbJoueur();
+    }
+
+    public static int choixNbJoueur(){
+        int nb;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Choisir une options (A ou B) :");
+        System.out.println("Choisir une option (1 ou 2) :");
         String choix = sc.nextLine();
-        while(!choix.contains("A") && !choix.contains("B")){
+        while(!choix.equals("1") && !choix.equals("2")){
             System.out.println("Choix impossible ! Veuillez entrez un choix entre A et B.");
             choix = sc.nextLine();
         }
-        return choix;
-    }    
-    
-    /* void affichageRegles(){        
-        System.out.println("Composition du jeu :");
-        System.out.println("Le jeu se compose des éléments suivants :"
-        System.out.println("Un plateau de jeu de 400 cases."
-        System.out.println("84 pièces (soit 21 pièces dans chacune des 4 couleurs)."
-        System.out.println(Chacune des 21 pièces est de forme différente.
-        System.out.println(Les pièces du jeu
-        System.out.println(Il y a :
-        System.out.println(1 pièce d’un carré (qu’on pourrait nommer le
-        System.out.println(« monomino »...
-        System.out.println(si ce terme existait)
-        System.out.println(1 pièce à deux carrés (un « domino »).
-        System.out.println(2 pièces à trois carrés (des « triominos »).
-        System.out.println(5 pièces à quatre carrés (des « tetraminos »).
-        System.out.println(12 pièces à cinq carrés (des « pentaminos »).
-        System.out.println(But du jeu :
-        System.out.println(Le but du jeu est, pour chaque joueur, de
-        System.out.println(placer ses 21 pièces sur le plateau (ou en tous
-        System.out.println(les cas, un maximum d’entre elles).
-        System.out.println(Contraintes :
-        System.out.println(Chaque joueur doit démarrer sur l’un des angles du plateau.
-        System.out.println(L’ordre de jeu est bleu, jaune, rouge, vert.
-        System.out.println(Chaque nouvelle pièce posée doit toucher au moins une pièce de la même couleur,
-        System.out.println(mais uniquement par les angles, jamais par les cotés.
-        System.out.println(Fin de la partie :
-        System.out.println(Lorsqu’un joueur est bloqué et ne peut plus placer de pièce, il est obligé de passer son
-        System.out.println(tour. Les autres joueurs poursuivent en conservant le même ordre de jeu, jusqu’à ce
-        System.out.println(que plus personne ne puisse placer de pièce.
-        System.out.println(Décompte des points :
-        System.out.println(Lorsque tous les joueurs sont bloqués, chacun compte le nombre de carrés qu’il n’a pu
-        System.out.println(placer sur le plateau et calcule son score :
-        System.out.println(Chaque carré non posé constitue un point négatif.
-        System.out.println(Un bonus de15 points est accordé si les 21 pièces ont été posées.
-        System.out.println(Ce bonus est de 20 points si les 21 pièces ont été posées avec le carré solitaire en
-        System.out.println(dernière position.
-        System.out.println(Celui qui a le plus de points a gagné !
-System.out.println(;        System.out.println(;}
-*/
+        sc.close();
+        nb = Integer.parseInt(choix);
+        return nb*2;
+    }
+
+    static void affichageRegles() throws FileNotFoundException{
+        int nb = Game.choixRegles(); 
+        System.out.println(nb);       
+        FileReader file = new FileReader("res/regles/"+ nb + ".txt");
+        Scanner sc = new Scanner(file);
+        while(sc.hasNextLine())
+        {
+          System.out.println(sc.nextLine());
+        }
+        sc.close();    
+      }
+
+    public static int choixRegles(){
+        int nb;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choisissez la catégorie que vous voulez lire :");
+        System.out.println();
+        System.out.println("1 - Composition du jeu");
+        System.out.println();
+        System.out.println("2 -  Les pièces du jeu");
+        System.out.println();
+        System.out.println("3 - But du Jeu");
+        System.out.println();
+        System.out.println("4 - Contraintes");
+        System.out.println();
+        System.out.println("5 - Fin de la partie");
+        System.out.println();
+        System.out.println("6 - Décompte des points");
+        String choix = sc.nextLine();
+        while( !choix.equals("1") && !choix.equals("2") && !choix.equals("3") && !choix.equals("4") && !choix.equals("5") && !choix.equals("6")){
+            System.out.println("Choix impossible ! Veuillez entrez un entier entre 1 et 6.");
+            choix = sc.nextLine();
+        }
+        sc.close();
+        nb = Integer.parseInt(choix);
+        return nb;
+    }
+
     public static void affichageMenu(){
         System.out.println("QUE VOULEZ-VOUS FAIRE ?");
         System.out.println();
@@ -82,11 +95,11 @@ System.out.println(;        System.out.println(;}
             System.out.println("Choix impossible ! Veuillez entrez un choix entre 1 et 2.");
             choix = sc.nextInt();
         }
+        sc.close();
         return choix;
     }
 
-    public static void main(String[] args) {
-        affichageJoueur();
+    public static void main(String[] args) throws FileNotFoundException {
+        affichageRegles();
     }
-
 }
