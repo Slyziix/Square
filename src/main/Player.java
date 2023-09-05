@@ -90,6 +90,13 @@ public class Player {
             sb.append(this.getAvailablePiecesLineString(i));
             sb.append("\n");
         }
+        sb.append("|");
+
+        for(int i = 0; i < this.getAvailablePieces().size(); i++) {
+            String name = this.getAvailablePieces().get(i).ordinal() + "       ";
+            sb.append(name.substring(0, this.getAvailablePieces().get(i).getForm()[0].length * 2));
+            sb.append(" |");
+        }
         return sb.toString();
     }
 }
