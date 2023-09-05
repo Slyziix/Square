@@ -2,11 +2,18 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game{
 
     private int nbJoueur = 2;
+    private ArrayList<Player> playersList = new ArrayList<Player>();
+    private Player current_player;
+    private static Player Red_Player;
+    private static Player Blue_Player;
+    private static Player Green_Player;
+    private static Player Yellow_Player;
 
     public int getNbJoueur() {
         return nbJoueur;
@@ -38,6 +45,40 @@ public class Game{
         nb = Integer.parseInt(choix);
         return nb*2;
     }
+
+    public ArrayList<Player> initializePlayers(int nbJoueur) {
+        Red_Player = new Player(PlayerColor.RED);
+        Yellow_Player = new Player(PlayerColor.YELLOW);
+        Blue_Player = new Player(PlayerColor.BLUE);
+        Green_Player = new Player(PlayerColor.GREEN);
+
+        if (nbJoueur == 2) {
+            playersList = new ArrayList<>(2);
+            playersList.add(0,Red_Player);
+            playersList.add(1,Yellow_Player);
+        } else {
+            playersList = new ArrayList<>(4);
+            playersList.add(Red_Player);
+            playersList.add(Blue_Player);
+            playersList.add(Green_Player);
+            playersList.add(Yellow_Player);
+            
+        }
+        current_player = playersList.get(0);
+
+        return playersList;
+    }
+
+    public void switchPlayer() {
+        ArrayList<Player> tmp = new ArrayList<Player>();
+        Player tmp_Player = current_player;
+        for(int i = 1; i < playersList.size(); i++){
+            tmp.add(i-1, playersList.get(i));
+        }
+        tmp.add(playersList.size()-1, tmp_Player);
+        playersList = tmp;
+        current_player = playersList.get(0);
+    }    
 
     static void affichageRegles() throws FileNotFoundException{
         int nb = Game.choixRegles();      
@@ -98,7 +139,28 @@ public class Game{
         return choix;
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        affichageRegles();
+    public ArrayList<Player> getPlayerList() {
+        return playersList;
     }
+
+    public Player getCurrent_player() {
+        return current_player;
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        Game game = new Game();
+        game.initializePlayers(2); // Initialisez la file avec 4 joueurs (bleu, jaune, rouge, vert)
+    
+        // Affiche le joueur actuel (devrait être le premier joueur ajouté, c'est-à-dire le joueur bleu)
+        System.out.println("Joueur actuel : " + game.getCurrent_player());
+    
+        // Change de joueur en appelant switchPlayer
+        game.switchPlayer();
+        System.out.println("Joueur actuel après switch : " + game.getCurrent_player());
+    
+        // Change de joueur à nouveau
+        game.switchPlayer();
+        System.out.println("Joueur actuel après deuxième switch : " + game.getCurrent_player());
+    }
+    
 }

@@ -117,4 +117,8 @@ public class Player {
         }
         return score;
     }
+
+    public String toString() {
+        return "Player [score=" + score + ", color=" + this.color.name() + "]";
+    }
 }
