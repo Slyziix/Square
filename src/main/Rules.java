@@ -27,38 +27,38 @@ public class Rules {
 
                 // Check + form
                 if (s.getForm()[i][j]) {
-                    if (b.getBoard()[x - 1][y].equals(color)) {
+                    if (b.getBoard()[x + i - 1][y + j].equals(color)) {
                         return false;
                     }
 
-                    if (b.getBoard()[x][y - 1].equals(color)) {
+                    if (b.getBoard()[x + i][y + j - 1].equals(color)) {
                         return false;
                     }
 
-                    if (b.getBoard()[x][y + 1].equals(color)) {
+                    if (b.getBoard()[x + i][y + j + 1].equals(color)) {
                         return false;
                     }
 
-                    if (b.getBoard()[x + 1][y].equals(color)) {
+                    if (b.getBoard()[x + i + 1][y + j].equals(color)) {
                         return false;
                     }
                 }
 
                 // Check x form
                 if (s.getForm()[i][j]) {
-                    if (b.getBoard()[x - 1][y - 1].equals(color)) {
+                    if (b.getBoard()[x + i - 1][y + j - 1] == color) {
                         isSurrongindsSquareSatisfied = true;
                     }
 
-                    if (b.getBoard()[x - 1][y + 1].equals(color)) {
+                    if (b.getBoard()[x + i - 1][y + j + 1] == color) {
                         isSurrongindsSquareSatisfied = true;
                     }
 
-                    if (b.getBoard()[x + 1][y - 1].equals(color)) {
+                    if (b.getBoard()[x + j + 1][y + i - 1] == color) {
                         isSurrongindsSquareSatisfied = true;
                     }
 
-                    if (b.getBoard()[x + 1][y + 1].equals(color)) {
+                    if (b.getBoard()[x + i + 1][y + j + 1] == color) {
                         isSurrongindsSquareSatisfied = true;
                     }
                 }
