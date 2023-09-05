@@ -1,5 +1,6 @@
 package main;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,45 +59,45 @@ public class Player {
         return length;
     }
 
-    public String getAvailablePiecesLineString(int lineIdx) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("| ");
-        // each piece
-        for(int j = 0; j < this.getAvailablePieces().size(); j++) {
-            if(this.getAvailablePieces().get(j).getForm().length > lineIdx) {
-                // each case
-                for(int k = 0; k < this.getAvailablePieces().get(j).getForm()[0].length; k++) {
-                    if(this.getAvailablePieces().get(j).getForm()[lineIdx][k]) {
-                        sb.append("\u25A0" + " ");
-                    } else {
-                        sb.append("  ");
-                    }
-                }
-
-            } else {
-                for(int l = 0; l < this.getAvailablePieces().get(j).getForm()[0].length; l++) {
-                    sb.append("  ");
-                }        
-            }
-            sb.append("| ");
-            }
-            return sb.toString();
-
-        }
-
     public String getAvailablePiecesString() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i<5; i++) {
-            sb.append(this.getAvailablePiecesLineString(i));
+        // each line
+        for(int i = 0; i<7; i++) {
+            // each piece
+            for(int j = 0; j < this.getAvailablePieces().size(); j++) {
+                if(this.getAvailablePieces().get(j).getForm().length > i) {
+                    // each case
+                    for(int k = 0; k < this.getAvailablePieces().get(j).getForm()[0].length; k++) {
+                        if(this.getAvailablePieces().get(j).getForm()[i][k]) {
+                            sb.append("\u25A0" + " ");
+                        } else {
+                            sb.append("  ");
+                        }
+                    }
+
+                } else {
+
+                    if(i == 6) {
+                        String name = this.getAvailablePieces().get(j).name() + "                                             ";
+                        
+                        name = name.substring(6, 6 + this.getAvailablePieces().get(j).getForm()[0].length * 2);
+                        sb.append(name);
+                    }
+                    else {
+                        for(int l = 0; l < this.getAvailablePieces().get(j).getForm()[0].length; l++) {
+                            sb.append("  ");
+                    }
+                    }
+
+                    
+                }
+                sb.append("| ");
+                //f(this.getAvailablePieces().get(i).getForm().length)
+
+            }
             sb.append("\n");
         }
-        sb.append("|");
-
-        for(int i = 0; i < this.getAvailablePieces().size(); i++) {
-            String name = this.getAvailablePieces().get(i).ordinal() + 1 + "       ";
-            sb.append(name.substring(0, this.getAvailablePieces().get(i).getForm()[0].length * 2));
-            sb.append(" |");
-        }
         return sb.toString();
+
     }
 }

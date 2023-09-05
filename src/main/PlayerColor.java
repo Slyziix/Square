@@ -2,8 +2,6 @@ package main;
 
 import java.awt.Color;
 
-import Position; 
-
 public enum PlayerColor {
     
     WHITE(Color.WHITE,null),
