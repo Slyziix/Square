@@ -1,4 +1,4 @@
-
+package main;
 public enum Piece{
     PIECE_A(new boolean[][]{{true}}),
     PIECE_B(new boolean[][]{{true},{true}}),
@@ -27,6 +27,7 @@ public enum Piece{
 
     public static void main(String[] str) {
         System.out.println(Piece.PIECE_U);
+        System.out.println(Piece.PIECE_M);
     }
     
     Piece(boolean[][] form){
@@ -55,4 +56,7 @@ public enum Piece{
         return sb.toString();
             
     }
+
+
+   
 }
