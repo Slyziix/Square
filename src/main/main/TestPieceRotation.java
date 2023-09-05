@@ -1,5 +1,6 @@
 package main;
 
+
 public class TestPieceRotation {
     public static void main(String[] args) {
         Piece piece = Piece.PIECE_G;
