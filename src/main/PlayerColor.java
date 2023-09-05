@@ -22,7 +22,17 @@ public enum PlayerColor {
         return color;
     }
 
-    public String toString() {
-        return this.name();
+    public Position getPosition() {
+        return position;
     }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public String toString() {
+        String positionString = (position != null) ? ", Position: " + position.toString() : ", No Position Set";
+        return "Color: " + color.toString() + positionString;
+    }
+    
 }
