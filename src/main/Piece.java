@@ -1,32 +1,33 @@
 package main;
+
 public enum Piece{
-    PIECE_A(new boolean[][]{{true}}),
-    PIECE_B(new boolean[][]{{true},{true}}),
-    PIECE_C(new boolean[][]{{true},{true},{true}}),
-    PIECE_D(new boolean[][]{{true,false},{true,true}}),
-    PIECE_E(new boolean[][]{{true},{true},{true},{true}}),
-    PIECE_F(new boolean[][]{{false,true},{false,true},{true,true}}),
-    PIECE_G(new boolean[][]{{true,false},{true,true},{true, false}}),
-    PIECE_H(new boolean[][]{{true,true},{true,true}}),
-    PIECE_I(new boolean[][]{{true,true,false},{false,true,true}}),
-    PIECE_J(new boolean[][]{{true},{true},{true},{true}}),
-    PIECE_K(new boolean[][]{{false,true},{false,true},{false,true},{true,true}}),
-    PIECE_L(new boolean[][]{{false,true},{false,true},{true,true},{true,false}}),
-    PIECE_M(new boolean[][]{{false,true},{true,true},{true,true}}),
-    PIECE_N(new boolean[][]{{true,true},{false,true},{true,true}}),
-    PIECE_O(new boolean[][]{{true,false},{true,true},{true,false},{true,false}}),
-    PIECE_P(new boolean[][]{{false,true,false},{false,true,false},{true,true,true}}),
-    PIECE_Q(new boolean[][]{{true,false,false},{true,false,false},{true,true,true}}),
-    PIECE_R(new boolean[][]{{true,true,false},{false,true,true},{false,false,true}}),
-    PIECE_S(new boolean[][]{{true,false,false},{true,true,true},{false,false,true}}),
-    PIECE_T(new boolean[][]{{true,false,false},{true,true,true},{false,true,false}}),
-    PIECE_U(new boolean[][]{{false,true,false},{true,true,true},{false,true,false}});
+    PIECE_1(new boolean[][]{{true}}),
+    PIECE_2(new boolean[][]{{true},{true}}),
+    PIECE_3(new boolean[][]{{true},{true},{true}}),
+    PIECE_4(new boolean[][]{{true,false},{true,true}}),
+    PIECE_5(new boolean[][]{{true},{true},{true},{true}}),
+    PIECE_6(new boolean[][]{{false,true},{false,true},{true,true}}),
+    PIECE_7(new boolean[][]{{true,false},{true,true},{true, false}}),
+    PIECE_8(new boolean[][]{{true,true},{true,true}}),
+    PIECE_9(new boolean[][]{{true,true,false},{false,true,true}}),
+    PIECE_10(new boolean[][]{{true},{true},{true},{true}}),
+    PIECE_11(new boolean[][]{{false,true},{false,true},{false,true},{true,true}}),
+    PIECE_12(new boolean[][]{{false,true},{false,true},{true,true},{true,false}}),
+    PIECE_13(new boolean[][]{{false,true},{true,true},{true,true}}),
+    PIECE_14(new boolean[][]{{true,true},{false,true},{true,true}}),
+    PIECE_15(new boolean[][]{{true,false},{true,true},{true,false},{true,false}}),
+    PIECE_16(new boolean[][]{{false,true,false},{false,true,false},{true,true,true}}),
+    PIECE_17(new boolean[][]{{true,false,false},{true,false,false},{true,true,true}}),
+    PIECE_18(new boolean[][]{{true,true,false},{false,true,true},{false,false,true}}),
+    PIECE_19(new boolean[][]{{true,false,false},{true,true,true},{false,false,true}}),
+    PIECE_20(new boolean[][]{{true,false,false},{true,true,true},{false,true,false}}),
+    PIECE_21(new boolean[][]{{false,true,false},{true,true,true},{false,true,false}});
 
 
     private boolean[][] form;
 
     public static void main(String[] str) {
-        Piece piece = Piece.PIECE_G;
+        Piece piece = Piece.PIECE_7;
         System.out.println(piece);
         piece.rotate();
         System.out.println(piece);
