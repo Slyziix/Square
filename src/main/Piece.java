@@ -10,7 +10,7 @@ public enum Piece{
     PIECE_7(new boolean[][]{{true,false},{true,true},{true, false}}),
     PIECE_8(new boolean[][]{{true,true},{true,true}}),
     PIECE_9(new boolean[][]{{true,true,false},{false,true,true}}),
-    PIECE_10(new boolean[][]{{true},{true},{true},{true}}),
+    PIECE_10(new boolean[][]{{true},{true},{true},{true},{true}}),
     PIECE_11(new boolean[][]{{false,true},{false,true},{false,true},{true,true}}),
     PIECE_12(new boolean[][]{{false,true},{false,true},{true,true},{true,false}}),
     PIECE_13(new boolean[][]{{false,true},{true,true},{true,true}}),

@@ -93,7 +93,7 @@ public class Player {
         sb.append("|");
 
         for(int i = 0; i < this.getAvailablePieces().size(); i++) {
-            String name = this.getAvailablePieces().get(i).ordinal() + "       ";
+            String name = this.getAvailablePieces().get(i).ordinal() + 1 + "       ";
             sb.append(name.substring(0, this.getAvailablePieces().get(i).getForm()[0].length * 2));
             sb.append(" |");
         }
