@@ -21,3 +21,6 @@
 
 # fichier md compilé
 *.html
+
+# vscode
+.vscode/*
