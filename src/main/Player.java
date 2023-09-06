@@ -50,14 +50,6 @@ public class Player {
         return availablePieces.remove(piece);
     }
 
-    private int getAvailablePieceTotalLength() {
-        int length = 0;
-        for(int i = 0; i < this.availablePieces.size(); i++) {
-            length += this.availablePieces.get(i).getForm()[0].length;
-        }
-        return length;
-    }
-
     public String getAvailablePiecesLineString(int lineIdx) {
         StringBuilder sb = new StringBuilder();
         sb.append("| ");
