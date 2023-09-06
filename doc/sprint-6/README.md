@@ -15,14 +15,15 @@
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-Lister ici tout ce qui était un peut moins bien que parfait.
-* Avez-vous terminé tout ce que vous vous étiez engagé à faire ?
-* Étiez -vous prêts au moment de la démo ?
-* ...
+- Difficile de coder à plusieurs quand on fait la boucle principalle
 
 ### PDCA
 * De tous ces éléments quel est celui que vous voulez améliorer ?
+- Meilleurs coordination
 * Comment pouvez-vous mesurer qu'il s'améliore ?
+- Si on a chacun en permanence des choses à faire
 * Quelles sont toutes les options possible pour l'améliorer ?
+- Mieux fragmenter le code
 * Qu'allez-vous tester pour l'améliorer ?
+- Mieux fragmenter le code
 
