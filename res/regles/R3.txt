@@ -1,6 +1,8 @@
+-------------------------------------------------------------
 But du jeu :
 Le but du jeu est, pour chaque joueur, de
 placer ses 21 pièces sur le plateau (ou en tous
 les cas, un maximum d’entre elles).
 
 Appuyez sur B puis Entrée pour revenir au menu des règles.
+-------------------------------------------------------------

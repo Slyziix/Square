@@ -1,3 +1,4 @@
+-------------------------------------------------------------
 Contraintes :
 
 Chaque joueur doit démarrer sur l’un des angles du plateau.
@@ -6,3 +7,4 @@ Chaque nouvelle pièce posée doit toucher au moins une pièce de la même coule
 mais uniquement par les angles, jamais par les cotés.
 
 Appuyez sur B puis Entrée pour revenir au menu des règles.
+-------------------------------------------------------------
