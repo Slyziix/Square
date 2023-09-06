@@ -64,7 +64,7 @@ public enum Piece{
             
     }
 
-    public void rotate(){
+    public boolean[][] rotate(){
        
         boolean[][] nvforme = new boolean[this.form[0].length][this.form.length];
 
@@ -73,7 +73,7 @@ public enum Piece{
                 nvforme[i][j] = this.form[this.form.length - 1 -j][i];
             }
         }
-        this.form = nvforme;
+        return nvforme;
     }
    
 }

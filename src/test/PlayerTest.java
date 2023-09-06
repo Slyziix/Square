@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import main.Piece;
 import main.Player;

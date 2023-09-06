@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -26,6 +27,16 @@ public class PieceTest {
         assertFalse(Piece.PIECE_R.getForm()[0][2]);
         assertTrue(Piece.PIECE_R.getForm()[1][2]);
         assertTrue(Piece.PIECE_R.getForm()[2][2]);
+    }
+
+    @Test
+    public void testRotate() {
+        assertEquals(new boolean[][]{{true},{true},{true}}, Piece.PIECE_C.getForm());
+        assertEquals(new boolean[][]{{true,true,true}}, Piece.PIECE_C.rotate());
+        assertEquals(new boolean[][]{{true,false},{true,true},{true,false},{true,false}}, Piece.PIECE_O.getForm());
+        assertEquals(new boolean[][]{{true,true,true,true},{false,false,true,false}}, Piece.PIECE_O.rotate());
+        assertEquals(new boolean[][]{{false,true,false},{true,true,true},{false,true,false}}, Piece.PIECE_U.getForm());
+        assertEquals(new boolean[][]{{false,true,false},{true,true,true},{false,true,false}}, Piece.PIECE_U.rotate());
     }
     
 }
