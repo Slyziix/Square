@@ -14,14 +14,15 @@
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-Lister ici tout ce qui était un peut moins bien que parfait.
-* Avez-vous terminé tout ce que vous vous étiez engagé à faire ?
-* Étiez -vous prêts au moment de la démo ?
-* ...
+- Conflit lors d'un git merge
 
 ### PDCA
 * De tous ces éléments quel est celui que vous voulez améliorer ?
+- Meilleur communication pour eviter les conflits
 * Comment pouvez-vous mesurer qu'il s'améliore ?
+- Moins de conflit de merge
 * Quelles sont toutes les options possible pour l'améliorer ?
+- Mieux communiquer
 * Qu'allez-vous tester pour l'améliorer ?
+- Mieux communiquer
 
