@@ -7,3 +7,5 @@ si ce terme existait)
 2 pièces à trois carrés (des « triominos »).
 5 pièces à quatre carrés (des « tetraminos »).
 12 pièces à cinq carrés (des « pentaminos »).
+
+Appuyez sur B puis Entrée pour revenir au menu des règles.
