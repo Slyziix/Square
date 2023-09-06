@@ -1,6 +1,13 @@
 # Square - Jeu Universitaire Inspiré de Blokus
 
-[Square Logo]
+```
+  ■ ■ ■ ■     ■ ■   ■   ■       ■     ■ ■ ■     ■   ■ ■       ■ ■ ■  
+■           ■     ■ ■   ■       ■           ■   ■ ■     ■   ■       ■
+  ■ ■ ■     ■       ■   ■       ■     ■ ■ ■ ■   ■           ■ ■ ■ ■ ■
+        ■     ■ ■ ■ ■   ■       ■   ■       ■   ■           ■        
+■ ■ ■ ■             ■     ■ ■ ■ ■     ■ ■ ■ ■   ■             ■ ■ ■ ■
+                    ■                                                
+```
 
 ## Table des matières
 
