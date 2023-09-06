@@ -2,7 +2,6 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,7 +48,7 @@ public class Game {
 
     public ArrayList<Player> initializePlayers(int nbJoueur) {
         Red_Player = new Player(PlayerColor.RED);
-        Yellow_Player = new Player(PlayerColor.YELLOW);
+        Yellow_Player = new Player(PlayerColor.MAGENTA);
         Blue_Player = new Player(PlayerColor.BLUE);
         Green_Player = new Player(PlayerColor.GREEN);
 
@@ -155,17 +154,23 @@ public class Game {
         Board b = new Board();
         b.initialise();
 
+        Scanner scanner = new Scanner(System.in);
+
         while (true) {
             b.displayBoard();
             Player currentP = g.getCurrent_player();
+            System.out.println();
             System.out.println(currentP.getAvailablePiecesString());
             boolean placementDone = false;
             while (!placementDone) {
-                int[] input = getUserInput();
+                int[] input = getUserInput(scanner, currentP.getAvailablePieces().size());
                 int choice = input[0];
                 Piece pieceChose = currentP.getAvailablePieces().get(choice);
                 Position p = new Position(input[1], input[2]);
-                placementDone = b.placeShape(p, b, currentP.getColor(), pieceChose, turn);
+                placementDone = b.placeShape(p, b, currentP, pieceChose.getForm(), turn);
+                if (placementDone) {
+                    currentP.removePiece(pieceChose);
+                }
             }
             g.switchPlayer();
             if (g.current_player.getColor() == PlayerColor.RED) {
@@ -174,9 +179,7 @@ public class Game {
         }
     }
 
-    public int[] getUserInput() {
-        Scanner scanner = new Scanner(System.in);
-
+    public int[] getUserInput(Scanner scanner, int max) {
         int number;
         int x;
         int y;
@@ -184,19 +187,19 @@ public class Game {
         do {
             System.out.print("Entrer le numero de la piece souhaite : ");
             number = scanner.nextInt();
-        } while (number < 1 || number > 21);
+        } while (number < 1 || number > max);
 
         do {
-            System.out.print("Entrer la position x : ");
-            x = scanner.nextInt();
+            System.out.print("Entrer la ligne : ");
+            String tmpX = scanner.next().toUpperCase();
+            x = tmpX.charAt(0) - 'A';
         } while (x < 0 || x > 19);
 
         do {
-            System.out.print("Entrer la position y : ");
-            y = scanner.nextInt();
+            System.out.print("Entrer la colonne : ");
+            String tmpY = scanner.next().toUpperCase();
+            y = tmpY.charAt(0) - 'A';
         } while (y < 0 || y > 19);
-
-        scanner.close();
 
         return new int[] { number - 1, x, y };
     }

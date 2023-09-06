@@ -19,7 +19,15 @@ public class Board {
     }
 
     public void displayBoard() {
+        System.out.print(" ");
         for (int i = 0; i < this.board.length; ++i) {
+            char[] c = Character.toChars('A' + i);
+            System.out.print(" " + c[0]);
+        }
+        System.out.println();
+        for (int i = 0; i < this.board.length; ++i) {
+            char[] c = Character.toChars('A' + i);
+            System.out.print(c[0] + " ");
             for (int j = 0; j < this.board[i].length; ++j) {
                 PlayerColor cellColor = board[i][j];
                 Color foregroundColor = cellColor.getColor();
@@ -28,8 +36,15 @@ public class Board {
                 System.out.print("\u001B[38;2;" + foregroundColor.getRed() + ";" + foregroundColor.getGreen() + ";"
                         + foregroundColor.getBlue() + "m" + square + "\u001B[0m");
             }
+            System.out.print(c[0]);
             System.out.println();
         }
+        System.out.print(" ");
+        for (int i = 0; i < this.board.length; ++i) {
+            char[] c = Character.toChars('A' + i);
+            System.out.print(" " + c[0]);
+        }
+        System.out.println();
     }
 
     public void setColorAt(Position position) {
@@ -50,28 +65,41 @@ public class Board {
         return board;
     }
 
-    public boolean placeShape(Position p, Board b, PlayerColor pcolor, Piece shape, int turn) {
+    public boolean placeShape(Position p, Board b, Player player, boolean[][] shape, int turn) {
+        PlayerColor pcolor = player.getColor();
+        CURRENT_PLAYER = pcolor;
+
         if (turn == 0) {
-            if (Rules.checkDisponibility(b, p, shape) && pcolor.getPosition().equals(p)) {
+            if (Rules.checkDisponibility(b, p, shape)) {
                 int x = p.getX();
                 int y = p.getY();
 
-                for (int i = 0; i < shape.getForm().length; ++i) {
-                    for (int j = 0; j < shape.getForm()[i].length; ++j) {
-                        if (shape.getForm()[i][j])
+                boolean placementOK = false;
+                for (int i = 0; i < shape.length; ++i) {
+                    for (int j = 0; j < shape[i].length; ++j) {
+                        if (shape[i][j] && (x + i) == pcolor.getPosition().getX()
+                                && (y + j) == pcolor.getPosition().getY()) {
+                            placementOK = true;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < shape.length; ++i) {
+                    for (int j = 0; j < shape[i].length; ++j) {
+                        if (shape[i][j])
                             b.setColorAt(new Position(x + i, y + j));
                     }
                 }
 
-                return true;
+                return placementOK;
             }
         } else if (Rules.checkDisponibility(b, p, shape) && Rules.checkSurrondings(b, p, shape, pcolor)) {
             int x = p.getX();
             int y = p.getY();
 
-            for (int i = 0; i < shape.getForm().length; ++i) {
-                for (int j = 0; j < shape.getForm()[i].length; ++j) {
-                    if (shape.getForm()[i][j])
+            for (int i = 0; i < shape.length; ++i) {
+                for (int j = 0; j < shape[i].length; ++j) {
+                    if (shape[i][j])
                         b.setColorAt(new Position(x + i, y + j));
                 }
             }
@@ -80,17 +108,4 @@ public class Board {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        Board b = new Board();
-        b.initialise();
-
-        b.setColorAt(new Position(5, 5));
-        b.setColorAt(new Position(6, 5));
-
-        b.placeShape(new Position(5, 2), b, PlayerColor.RED, Piece.PIECE_A, 0);
-
-        b.displayBoard();
-    }
-
 }
