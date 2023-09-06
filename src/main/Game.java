@@ -164,7 +164,7 @@ public class Game {
             System.out.println(currentP.getAvailablePiecesString());
             boolean placementDone = false;
             while (!placementDone) {
-                int[] input = getUserInput(scanner, currentP.getAvailablePieces().size());
+                int[] input = getUserInput(scanner, currentP.getAvailablePieces().size(), currentP);
                 int choice = input[0];
                 Piece pieceChose = currentP.getAvailablePieces().get(choice);
                 Position p = new Position(input[1], input[2]);
@@ -180,7 +180,7 @@ public class Game {
         }
     }
 
-    public int[] getUserInput(Scanner scanner, int max) {
+    public int[] getUserInput(Scanner scanner, int max, Player p) {
         int number;
         int x;
         int y;
@@ -190,14 +190,15 @@ public class Game {
             System.out.print("Entrer le numero de la piece souhaite : ");
             number = scanner.nextInt();
         } while (number < 1 || number > max);
-
         boolean[][] selectShape = current_player.getAvailablePieces().get(number - 1).getForm();
+        System.out.println(Piece.showPlaceable(selectShape, p));
+
         do {
             System.out.println("Voulez vous trounez votre pièce ?");
             rotate = scanner.next().toLowerCase();
             if (rotate.equals("oui")) {
                 selectShape = Piece.rotate(selectShape);
-                System.out.println(Piece.toString(selectShape));
+                System.out.println(Piece.showPlaceable(selectShape, p));
             }
         } while (rotate.equals("oui"));
         currentPiece = selectShape;
