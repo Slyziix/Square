@@ -50,7 +50,7 @@ public class Board {
         return board;
     }
 
-    public void placeShape(Position p, Board b, PlayerColor pcolor, Piece shape, int turn) {
+    public boolean placeShape(Position p, Board b, PlayerColor pcolor, Piece shape, int turn) {
         if (turn == 0) {
             if (Rules.checkDisponibility(b, p, shape) && pcolor.getPosition().equals(p)) {
                 int x = p.getX();
@@ -62,6 +62,8 @@ public class Board {
                             b.setColorAt(new Position(x + i, y + j));
                     }
                 }
+
+                return true;
             }
         } else if (Rules.checkDisponibility(b, p, shape) && Rules.checkSurrondings(b, p, shape, pcolor)) {
             int x = p.getX();
@@ -73,8 +75,10 @@ public class Board {
                         b.setColorAt(new Position(x + i, y + j));
                 }
             }
-        }
 
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) {

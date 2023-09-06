@@ -2,10 +2,11 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game{
+public class Game {
 
     private int nbJoueur = 2;
     private ArrayList<Player> playersList = new ArrayList<Player>();
@@ -22,8 +23,8 @@ public class Game{
     public void setNbJoueur(int nbJoueur) {
         this.nbJoueur = nbJoueur;
     }
-    
-    public void affichageJoueur(){
+
+    public void affichageJoueur() {
         System.out.println("Combien de joueurs ?");
         System.out.println("1. 2 Joueurs");
         System.out.println();
@@ -32,18 +33,18 @@ public class Game{
         int nb = Game.choixNbJoueur();
     }
 
-    public static int choixNbJoueur(){
+    public static int choixNbJoueur() {
         int nb;
         Scanner sc = new Scanner(System.in);
         System.out.println("Choisir une option (1 ou 2) :");
         String choix = sc.nextLine();
-        while(!choix.equals("1") && !choix.equals("2")){
+        while (!choix.equals("1") && !choix.equals("2")) {
             System.out.println("Choix impossible ! Veuillez entrez un choix entre A et B.");
             choix = sc.nextLine();
         }
         sc.close();
         nb = Integer.parseInt(choix);
-        return nb*2;
+        return nb * 2;
     }
 
     public ArrayList<Player> initializePlayers(int nbJoueur) {
@@ -54,15 +55,15 @@ public class Game{
 
         if (nbJoueur == 2) {
             playersList = new ArrayList<>(2);
-            playersList.add(0,Red_Player);
-            playersList.add(1,Yellow_Player);
+            playersList.add(0, Red_Player);
+            playersList.add(1, Yellow_Player);
         } else {
             playersList = new ArrayList<>(4);
             playersList.add(Red_Player);
             playersList.add(Blue_Player);
             playersList.add(Green_Player);
             playersList.add(Yellow_Player);
-            
+
         }
         current_player = playersList.get(0);
 
@@ -72,26 +73,25 @@ public class Game{
     public void switchPlayer() {
         ArrayList<Player> tmp = new ArrayList<Player>();
         Player tmp_Player = current_player;
-        for(int i = 1; i < playersList.size(); i++){
-            tmp.add(i-1, playersList.get(i));
+        for (int i = 1; i < playersList.size(); i++) {
+            tmp.add(i - 1, playersList.get(i));
         }
-        tmp.add(playersList.size()-1, tmp_Player);
+        tmp.add(playersList.size() - 1, tmp_Player);
         playersList = tmp;
         current_player = playersList.get(0);
-    }    
+    }
 
-    static void affichageRegles() throws FileNotFoundException{
-        int nb = Game.choixRegles();      
-        File file = new File("res/regles/R"+ nb + ".txt");
+    static void affichageRegles() throws FileNotFoundException {
+        int nb = Game.choixRegles();
+        File file = new File("res/regles/R" + nb + ".txt");
         Scanner sc = new Scanner(file);
-        while(sc.hasNextLine())
-        {
-          System.out.println(sc.nextLine());
+        while (sc.hasNextLine()) {
+            System.out.println(sc.nextLine());
         }
-        sc.close();    
-      }
+        sc.close();
+    }
 
-    public static int choixRegles(){
+    public static int choixRegles() {
         int nb;
         Scanner sc = new Scanner(System.in);
         System.out.println("Choisissez la catégorie que vous voulez lire :");
@@ -108,7 +108,8 @@ public class Game{
         System.out.println();
         System.out.println("6 - Décompte des points");
         String choix = sc.nextLine();
-        while( !choix.equals("1") && !choix.equals("2") && !choix.equals("3") && !choix.equals("4") && !choix.equals("5") && !choix.equals("6")){
+        while (!choix.equals("1") && !choix.equals("2") && !choix.equals("3") && !choix.equals("4")
+                && !choix.equals("5") && !choix.equals("6")) {
             System.out.println("Choix impossible ! Veuillez entrez un entier entre 1 et 6.");
             choix = sc.nextLine();
         }
@@ -117,21 +118,21 @@ public class Game{
         return nb;
     }
 
-    public static void affichageMenu(){
+    public static void affichageMenu() {
         System.out.println("QUE VOULEZ-VOUS FAIRE ?");
         System.out.println();
         System.out.println("1 - Nombre de joueurs");
         System.out.println();
         System.out.println("2 - Règles");
         Game.choixMenu();
-    
+
     }
 
-    public static int choixMenu(){
+    public static int choixMenu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choisir une options (1 ou 2) :");
         int choix = sc.nextInt();
-        while( choix != 1 || choix != 2){
+        while (choix != 1 || choix != 2) {
             System.out.println("Choix impossible ! Veuillez entrez un choix entre 1 et 2.");
             choix = sc.nextInt();
         }
@@ -147,20 +148,63 @@ public class Game{
         return current_player;
     }
 
+    public void start(Game g, int nbPlayers) {
+        int turn = 0;
+
+        g.initializePlayers(nbPlayers);
+        Board b = new Board();
+        b.initialise();
+
+        while (true) {
+            b.displayBoard();
+            Player currentP = g.getCurrent_player();
+            System.out.println(currentP.getAvailablePiecesString());
+            boolean placementDone = false;
+            while (!placementDone) {
+                int[] input = getUserInput();
+                int choice = input[0];
+                Piece pieceChose = currentP.getAvailablePieces().get(choice);
+                Position p = new Position(input[1], input[2]);
+                placementDone = b.placeShape(p, b, currentP.getColor(), pieceChose, turn);
+            }
+            g.switchPlayer();
+            if (g.current_player.getColor() == PlayerColor.RED) {
+                ++turn;
+            }
+        }
+    }
+
+    public int[] getUserInput() {
+        Scanner scanner = new Scanner(System.in);
+
+        int number;
+        int x;
+        int y;
+
+        do {
+            System.out.print("Entrer le numero de la piece souhaite : ");
+            number = scanner.nextInt();
+        } while (number < 1 || number > 21);
+
+        do {
+            System.out.print("Entrer la position x : ");
+            x = scanner.nextInt();
+        } while (x < 0 || x > 19);
+
+        do {
+            System.out.print("Entrer la position y : ");
+            y = scanner.nextInt();
+        } while (y < 0 || y > 19);
+
+        scanner.close();
+
+        return new int[] { number - 1, x, y };
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         Game game = new Game();
-        game.initializePlayers(2); // Initialisez la file avec 4 joueurs (bleu, jaune, rouge, vert)
-    
-        // Affiche le joueur actuel (devrait être le premier joueur ajouté, c'est-à-dire le joueur bleu)
-        System.out.println("Joueur actuel : " + game.getCurrent_player());
-    
-        // Change de joueur en appelant switchPlayer
-        game.switchPlayer();
-        System.out.println("Joueur actuel après switch : " + game.getCurrent_player());
-    
-        // Change de joueur à nouveau
-        game.switchPlayer();
-        System.out.println("Joueur actuel après deuxième switch : " + game.getCurrent_player());
+        game.start(game, 2);
+
     }
-    
+
 }
