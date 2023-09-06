@@ -7,3 +7,5 @@ Ce bonus est de 20 points si les 21 pièces ont été posées avec le carré sol
 dernière position.
 
 Celui qui a le plus de points a gagné !
+
+Appuyez sur B puis Entrée pour revenir au menu des règles.

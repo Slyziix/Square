@@ -4,3 +4,5 @@ Le jeu se compose des éléments suivants :
 Un plateau de jeu de 400 cases.
 84 pièces (soit 21 pièces dans chacune des 4 couleurs).
 Chacune des 21 pièces est de forme différente.
+
+Appuyez sur B puis Entrée pour revenir au menu des règles.
