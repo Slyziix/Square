@@ -7,8 +7,15 @@ import java.util.Scanner;
 public class Menu {
     static int nbJoueur = 2;
 
-    static void menuPrincipal() {
-        System.out.println("\nBIENVENUE SUR SQUARE !\n");
+    static void menuPrincipal() throws FileNotFoundException {
+        // System.out.println("\nBIENVENUE SUR SQUARE !\n");
+        File file = new File("res/title/title_small.txt");
+        Scanner scFile = new Scanner(file);
+        System.out.println();
+        while (scFile.hasNextLine()) {
+            System.out.println(scFile.nextLine());
+        }
+        scFile.close();
         System.out.println("QUE VOULEZ-VOUS FAIRE ?\n\n");
         System.out.println("1 - Lancer la partie\n");
         System.out.println("2 - Choisir le nombre de joueurs\n");
