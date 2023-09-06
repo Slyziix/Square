@@ -84,10 +84,12 @@ public class Board {
                     }
                 }
 
-                for (int i = 0; i < shape.length; ++i) {
-                    for (int j = 0; j < shape[i].length; ++j) {
-                        if (shape[i][j])
-                            b.setColorAt(new Position(x + i, y + j));
+                if (placementOK) {
+                    for (int i = 0; i < shape.length; ++i) {
+                        for (int j = 0; j < shape[i].length; ++j) {
+                            if (shape[i][j])
+                                b.setColorAt(new Position(x + i, y + j));
+                        }
                     }
                 }
 
@@ -107,5 +109,17 @@ public class Board {
             return true;
         }
         return false;
+    }
+
+    public void advancedDisplay() {
+        for (int i = 0; i < this.board.length; ++i) {
+            char[] c = Character.toChars('A' + i);
+            System.out.print(c[0] + " ");
+            for (int j = 0; j < this.board[i].length; ++j) {
+                System.out.print(board[i][j]);
+            }
+            System.out.print(c[0]);
+            System.out.println();
+        }
     }
 }

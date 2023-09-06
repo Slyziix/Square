@@ -191,11 +191,11 @@ public class Game {
             number = scanner.nextInt();
         } while (number < 1 || number > max);
 
-        boolean[][] selectShape = current_player.getAvailablePieces().get(number-1).getForm();
+        boolean[][] selectShape = current_player.getAvailablePieces().get(number - 1).getForm();
         do {
             System.out.println("Voulez vous trounez votre pièce ?");
             rotate = scanner.next().toLowerCase();
-            if (rotate.equals("oui")){
+            if (rotate.equals("oui")) {
                 selectShape = Piece.rotate(selectShape);
                 System.out.println(Piece.toString(selectShape));
             }
@@ -216,8 +216,6 @@ public class Game {
 
         return new int[] { number - 1, x, y };
     }
-
-
 
     public static void main(String[] args) throws FileNotFoundException {
         Game game = new Game();

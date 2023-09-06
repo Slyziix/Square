@@ -41,6 +41,7 @@ public class Rules {
 
                     try {
                         if (b.getBoard()[x + i][y + j - 1].equals(color)) {
+                            return false;
                         }
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println(e);
@@ -48,6 +49,7 @@ public class Rules {
 
                     try {
                         if (b.getBoard()[x + i][y + j + 1].equals(color)) {
+                            return false;
                         }
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println(e);
@@ -64,10 +66,10 @@ public class Rules {
 
                 // Check x form
                 if (s[i][j]) {
-                    System.out.println(i + " " + j);
-                    System.out.println(x + " " + y);
+                    // System.out.println(i + " " + j);
+                    // System.out.println(x + " " + y);
                     try {
-                        System.out.println(b.getBoard()[x + i - 1][y + j - 1]);
+                        // System.out.println(b.getBoard()[x + i - 1][y + j - 1]);
                         if (b.getBoard()[x + i - 1][y + j - 1] == color) {
                             System.out.println("OK");
                             isSurrongindsSquareSatisfied = true;
@@ -77,7 +79,7 @@ public class Rules {
                     }
 
                     try {
-                        System.out.println(b.getBoard()[x + i - 1][y + j + 1]);
+                        // System.out.println(b.getBoard()[x + i - 1][y + j + 1]);
                         if (b.getBoard()[x + i - 1][y + j + 1] == color) {
                             System.out.println("OK");
                             isSurrongindsSquareSatisfied = true;
@@ -87,7 +89,7 @@ public class Rules {
                     }
 
                     try {
-                        System.out.println(b.getBoard()[x + j + 1][y + i - 1]);
+                        // System.out.println(b.getBoard()[x + j + 1][y + i - 1]);
                         if (b.getBoard()[x + j + 1][y + i - 1] == color) {
                             System.out.println("OK");
                             isSurrongindsSquareSatisfied = true;
@@ -97,7 +99,7 @@ public class Rules {
                     }
 
                     try {
-                        System.out.println(b.getBoard()[x + i + 1][y + j + 1]);
+                        // System.out.println(b.getBoard()[x + i + 1][y + j + 1]);
                         if (b.getBoard()[x + i + 1][y + j + 1] == color) {
                             System.out.println("OK");
                             isSurrongindsSquareSatisfied = true;
