@@ -224,5 +224,4 @@ public class Game {
         game.start(game, 2);
 
     }
-
 }

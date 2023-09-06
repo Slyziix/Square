@@ -65,6 +65,7 @@ public class Rules {
                 // Check x form
                 if (s[i][j]) {
                     System.out.println(i + " " + j);
+                    System.out.println(x + " " + y);
                     try {
                         System.out.println(b.getBoard()[x + i - 1][y + j - 1]);
                         if (b.getBoard()[x + i - 1][y + j - 1] == color) {
