@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Menu {
-    
+    static int nbJoueur = 2;
 
-    static void menuPrincipal(){
+    static void menuPrincipal() {
         System.out.println("\nBIENVENUE SUR SQUARE !\n");
         System.out.println("QUE VOULEZ-VOUS FAIRE ?\n\n");
         System.out.println("1 - Lancer la partie\n");
@@ -16,28 +16,30 @@ public class Menu {
         System.out.println("4 - Quitter la partie\n");
     }
 
-    static void choixMenu(Scanner sc) throws FileNotFoundException{
+    static void choixMenu(Scanner sc) throws FileNotFoundException {
         sc.reset();
         menuPrincipal();
         System.out.println();
         int choix = sc.nextInt();
-        if(choix < 1 && choix > 5){
+        if (choix < 1 && choix > 5) {
             System.out.println("Choix impossible ! Veuillez entrer un entier entre 1 et 4");
             choix = sc.nextInt();
         }
         System.out.println();
-        if(choix == 1){
-            
+        if (choix == 1) {
+            Game game = new Game();
+            game.start(game, nbJoueur);
         }
-        if(choix == 2){
-            int nb = choixNbJoueur(sc);
-            System.out.println("Vous avez choisi " + nb + " joueurs.\n");
+        if (choix == 2) {
+            nbJoueur = choixNbJoueur(sc);
+            System.out.println("Vous avez choisi " + nbJoueur + " joueurs.\n");
             choixMenu(sc);
         }
-        if(choix == 3){
+        if (choix == 3) {
             affichageRegles(sc);
         }
-        if(choix == 4){}
+        if (choix == 4) {
+        }
     }
 
     public static void affichageJoueur() {
@@ -70,12 +72,12 @@ public class Menu {
             System.out.println(scFile.nextLine());
         }
         scFile.close();
-        String back = sc.nextLine();
-        while(!back.equals("b") && !back.equals("B")){
+        String back = sc.nextLine().toLowerCase();
+        while (!back.equals("b")) {
             back = sc.nextLine();
         }
         affichageRegles(sc);
-        
+
     }
 
     public static int choixRegles(Scanner sc) throws FileNotFoundException {
@@ -88,27 +90,22 @@ public class Menu {
         System.out.println("4 - Contraintes\n");
         System.out.println("5 - Fin de la partie\n");
         System.out.println("6 - Décompte des points\n");
-        String choix = sc.nextLine();
-        while((!choix.equals("b") && !choix.equals("B")) && (!choix.equals("1") 
+        String choix = sc.nextLine().toLowerCase();
+        while (!choix.equals("b") && (!choix.equals("1")
                 && !choix.equals("2") && !choix.equals("3") && !choix.equals("4")
-                && !choix.equals("5") && !choix.equals("6"))){
-                    System.out.println("Veuillez entre un entier en 1 et 6 pour choisir une règle ou sur B puis Entrée pour revenir au menu principal");
-                    choix = sc.nextLine();
-                }
-        if(choix.equals("b") || choix.equals("B")){
+                && !choix.equals("5") && !choix.equals("6"))) {
+            System.out.println(
+                    "Veuillez entre un entier en 1 et 6 pour choisir une règle ou sur B puis Entrée pour revenir au menu principal");
+            choix = sc.nextLine();
+        }
+        if (choix.equals("b") || choix.equals("B")) {
             choixMenu(sc);
             return 0;
-        }
-        else{
+        } else {
             nb = Integer.parseInt(choix);
             return nb;
         }
     }
-
-
-
-
-
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);

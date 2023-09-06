@@ -1,3 +1,4 @@
+-------------------------------------------------------------
 Les pièces du jeu
 Il y a :
 1 pièce d’un carré (qu’on pourrait nommer le
@@ -9,3 +10,4 @@ si ce terme existait)
 12 pièces à cinq carrés (des « pentaminos »).
 
 Appuyez sur B puis Entrée pour revenir au menu des règles.
+-------------------------------------------------------------

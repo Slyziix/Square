@@ -89,8 +89,8 @@ public class Rules {
                     }
 
                     try {
-                        // System.out.println(b.getBoard()[x + j + 1][y + i - 1]);
-                        if (b.getBoard()[x + j + 1][y + i - 1] == color) {
+                        // System.out.println(b.getBoard()[x + i + 1][y + j - 1]);
+                        if (b.getBoard()[x + i + 1][y + j - 1] == color) {
                             System.out.println("OK");
                             isSurrongindsSquareSatisfied = true;
                         }

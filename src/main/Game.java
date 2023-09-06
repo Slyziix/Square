@@ -3,6 +3,7 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -157,10 +158,11 @@ public class Game {
 
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        while (g.getCurrent_player().getAvailablePieces().size() > 0) {
             b.displayBoard();
             Player currentP = g.getCurrent_player();
             System.out.println();
+            System.out.println("\u001B[1mC'est le tour du joueur " + currentP.getColor().name() + "\u001B[0m");
             System.out.println(currentP.getAvailablePiecesString());
             boolean placementDone = false;
             while (!placementDone) {
@@ -178,6 +180,7 @@ public class Game {
                 ++turn;
             }
         }
+        System.out.println("Félicitations vous avez fini la partie !!!");
     }
 
     public int[] getUserInput(Scanner scanner, int max, Player p) {
@@ -187,14 +190,21 @@ public class Game {
         String rotate;
 
         do {
-            System.out.print("Entrer le numero de la piece souhaite : ");
-            number = scanner.nextInt();
+            try {
+                System.out.print("Entrer le numero de la piece souhaite : ");
+                number = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Rentrez un des numéros présent dans la liste ci-dessus");
+                number = 0;
+                scanner.nextLine();
+            }
+
         } while (number < 1 || number > max);
         boolean[][] selectShape = current_player.getAvailablePieces().get(number - 1).getForm();
         System.out.println(Piece.showPlaceable(selectShape, p));
 
         do {
-            System.out.println("Voulez vous trounez votre pièce ?");
+            System.out.println("Voulez vous tournez votre pièce ?");
             rotate = scanner.next().toLowerCase();
             if (rotate.equals("oui")) {
                 selectShape = Piece.rotate(selectShape);

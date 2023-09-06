@@ -1,3 +1,4 @@
+-------------------------------------------------------------
 Composition du jeu :
 
 Le jeu se compose des éléments suivants :
@@ -6,3 +7,4 @@ Un plateau de jeu de 400 cases.
 Chacune des 21 pièces est de forme différente.
 
 Appuyez sur B puis Entrée pour revenir au menu des règles.
+-------------------------------------------------------------

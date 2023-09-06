@@ -1,3 +1,4 @@
+-------------------------------------------------------------
 Décompte des points :
 Lorsque tous les joueurs sont bloqués, chacun compte le nombre de carrés qu’il n’a pu
 placer sur le plateau et calcule son score :
@@ -9,3 +10,4 @@ dernière position.
 Celui qui a le plus de points a gagné !
 
 Appuyez sur B puis Entrée pour revenir au menu des règles.
+-------------------------------------------------------------
