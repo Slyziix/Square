@@ -14,6 +14,7 @@ public class Game {
     private static Player Blue_Player;
     private static Player Green_Player;
     private static Player Yellow_Player;
+    private boolean[][] currentPiece;
 
     public int getNbJoueur() {
         return nbJoueur;
@@ -167,7 +168,7 @@ public class Game {
                 int choice = input[0];
                 Piece pieceChose = currentP.getAvailablePieces().get(choice);
                 Position p = new Position(input[1], input[2]);
-                placementDone = b.placeShape(p, b, currentP, pieceChose.getForm(), turn);
+                placementDone = b.placeShape(p, b, currentP, currentPiece, turn);
                 if (placementDone) {
                     currentP.removePiece(pieceChose);
                 }
@@ -183,11 +184,23 @@ public class Game {
         int number;
         int x;
         int y;
+        String rotate;
 
         do {
             System.out.print("Entrer le numero de la piece souhaite : ");
             number = scanner.nextInt();
         } while (number < 1 || number > max);
+
+        boolean[][] selectShape = current_player.getAvailablePieces().get(number-1).getForm();
+        do {
+            System.out.println("Voulez vous trounez votre pièce ?");
+            rotate = scanner.next().toLowerCase();
+            if (rotate.equals("oui")){
+                selectShape = Piece.rotate(selectShape);
+                System.out.println(Piece.toString(selectShape));
+            }
+        } while (rotate.equals("oui"));
+        currentPiece = selectShape;
 
         do {
             System.out.print("Entrer la ligne : ");
@@ -203,6 +216,8 @@ public class Game {
 
         return new int[] { number - 1, x, y };
     }
+
+
 
     public static void main(String[] args) throws FileNotFoundException {
         Game game = new Game();

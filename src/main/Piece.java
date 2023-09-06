@@ -64,6 +64,25 @@ public enum Piece{
             
     }
 
+    public static String toString(boolean[][] tab){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<tab.length;i++){
+            for(int j=0;j<tab[0].length;j++){
+                if(tab[i][j]){
+                    sb.append("\u25A0");
+                }
+                else{
+                    sb.append(" ");
+                }
+                sb.append(" ");
+                    
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+            
+    }
+
     public boolean[][] rotate(){
        
         boolean[][] nvforme = new boolean[this.form[0].length][this.form.length];
@@ -75,5 +94,16 @@ public enum Piece{
         }
         return nvforme;
     }
-   
+
+    public static boolean[][] rotate(boolean[][] piece){
+       
+        boolean[][] nvforme = new boolean[piece[0].length][piece.length];
+
+        for (int i=0;i<piece[0].length;i++){
+            for(int j=0;j<piece.length;j++){
+                nvforme[i][j] = piece[piece.length - 1 -j][i];
+            }
+        }
+        return nvforme;
+    }
 }
