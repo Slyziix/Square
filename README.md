@@ -45,6 +45,7 @@ Pour installer et jouer à Square, suivez ces étapes simples :
 
 Clonez ce dépôt sur votre machine locale.
 Assurez-vous d'avoir Java 17 installé.  
-[INSTRUCTIONS]
+Pour compiler le programme, executez compil.sh
+Pour lancerle programme, executez run.sh
 
 Profitez de Square et amusez-vous bien !
